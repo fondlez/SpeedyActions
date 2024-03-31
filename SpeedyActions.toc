@@ -1,9 +1,9 @@
 ## Interface: 20400
 ## Title: SpeedyActions |cff8080ffTBC|r
 ## Notes: Speeds up triggering actions such as items or spells by triggering them on key/mouse down rather than release
-## Author: Shadowed, humfras
-## Version: 4
-
+## Author: Shadowed, humfras, fondlez
+## Version: 4.0.1-fondlez
+## DefaultState: enabled
 ## OptionalDeps: Ace3
 
 ## SavedVariables: SpeedyActionsDB

@@ -353,9 +353,21 @@ function SpeedyActions:OverrideKeybind(key, action)
 	if( not action or action == "" ) then return end
 	
 	-- SetBindingClick, BUTTON# pretty commonly seems to be used by fishing addons along with CLICK actions so simply block any buttons from click actions from being sped up
+  -- FIX(@fondlez): fix for BindPad bindings, implemented e.g. as "CLICK BindPadMacro22:"
+  --[[
 	local buttonName, mouseButton = string.match(action, "^CLICK (.+):(.+)")
 	if( buttonName ) then
 		local button = _G[buttonName]
+		if( not string.match(key, "^BUTTON(%d+)") and button and ( cachedBindingButton[buttonName] or button:GetAttribute("type") and button:GetAttribute("type") ~= "click" ) ) then
+			self:RebindButton(button, key, mouseButton)
+		end
+		return
+	end
+  --]]
+	local buttonName, mouseButton = string.match(action, "^CLICK (.+):(.*)")
+	if( buttonName ) then
+		local button = _G[buttonName]
+    mouseButton = mouseButton or "LeftButton"
 		if( not string.match(key, "^BUTTON(%d+)") and button and ( cachedBindingButton[buttonName] or button:GetAttribute("type") and button:GetAttribute("type") ~= "click" ) ) then
 			self:RebindButton(button, key, mouseButton)
 		end
